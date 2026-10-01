@@ -6,7 +6,7 @@ use arrow::datatypes::DataType;
 // We need PartialEq and Debug for assert_eq! since:
 // We need to compare 2 values for equality, which requires they implement PartialEq.
 // If the assertion fails, Rust needs to print both values to show you what went wrong, so the type must have Debug.
-#[derive(Clone,PartialEq,Debug)]
+#[derive(Clone, PartialEq, Debug)]
 pub enum ArrowType {
     Boolean,
     Int8,
@@ -24,7 +24,7 @@ pub enum ArrowType {
 
 /// Converts an ArrowType variant into its corresponding Apache Arrow DataType.
 /// Allows using `.into()` anywhere an Arrow DataType is expected.
-impl From<ArrowType> for DataType{
+impl From<ArrowType> for DataType {
     fn from(t: ArrowType) -> Self {
         match t {
             ArrowType::Boolean => DataType::Boolean,
@@ -42,7 +42,6 @@ impl From<ArrowType> for DataType{
         }
     }
 }
-
 
 #[cfg(test)]
 mod tests {

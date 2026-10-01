@@ -62,11 +62,12 @@ impl ColumnVector for LiteralValueVector {
             panic!("{}", format!("index {index} is out-of-bounds"))
         }
 
-        // Check if the value is null.
-        // If the value is null, return None.
-        if self.value.is_none() {
-            return None;
-        }
+        // The ? operator on an Option means: if this is None, return None early, otherwise unwrap it and continue.
+        // The ; at the end discards the unwrapped value.
+        // If self.value is None, return None, otherwise continue.
+        // It's the idiomatic Rust way to propagate None through a function.
+        // as_ref is needed here to avoid moving self.value out of the struct.
+        self.value.as_ref()?;
 
         self.value.clone()
     }

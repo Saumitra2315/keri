@@ -20,11 +20,11 @@ use crate::column_vector::ColumnVector;
 /// It wraps an actual Apache Arrow array, handling the type-specific branching
 /// in one place so that the rest of the engine can work with column data generically.
 pub struct ArrowFieldVector {
-    // ArrRef is Arrow's type alias for Arc<dyn Array>
-    // dyn Array means any type that implements the array trait
-    // Arc wraps it so the array can be shared across multiple places without copying the data
-    // ArrayRef is saying: I have a column of data, I don't care what it is right now.
-    // When we actually need to read values out of it later, that is when we downcast it back to the concrete type.
+    // ArrayRef is Arrow's type alias for Arc<dyn Array>.
+    // dyn Array means any type that implements the array trait.
+    // Anything that implements Arrow's array trait is a concrete column of data, like Int32Array, StringArray, Float64Array, etc.
+    // To make an ArrowFieldVector we need to create a concrete arrow types, wrap it in Arc, and pass it in.
+    // Arc wraps it so the array can be shared across multiple places without copying the data.
     pub array: ArrayRef,
 }
 
