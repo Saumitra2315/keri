@@ -1,0 +1,10 @@
+[package]
+name = "query-engine-datasource"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+arrow = {workspace = true}
+csv = {workspace = true}
+parquet = { workspace = true }
+query-engine-datatypes = {path = "../query-engine-datatypes"}

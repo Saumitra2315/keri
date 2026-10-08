@@ -4,3 +4,5 @@ resolver = "2"
 
 [workspace.dependencies]
 arrow = "60"
+parquet = "60"
+csv = "1.4.0"
